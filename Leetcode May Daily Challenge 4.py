@@ -5,6 +5,7 @@ def predictPartyVictory(senate: str) -> str:
     n = len(senate)
     radiant = deque()
     dire = deque()
+
     for i, s in enumerate(senate):
         if s == 'R':
             radiant.append(i)

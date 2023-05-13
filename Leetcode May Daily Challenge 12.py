@@ -1,15 +1,12 @@
-def countGoodStrings(low: int, high: int, zero: int, one: int) -> int:
-    mod = 10 ** 9 + 7
-    dp = {}
+class Solution:
+    def mostPoints(self, questions: List[List[int]]) -> int:
+        dp = {}
 
-    def dfs(length):
-        if length > high:
-            return 0
-        if length in dp:
-            return dp[length]
+        for i in range(len(questions) - 1, -1, -1):
 
-        result = 1 if length >= low else 0
-        result += dfs(length + zero) + dfs(length + one)
-        return result % mod
+            dp[i] = max(
+                questions[i][0] + dp.get(i + 1 + questions[i][1], 0),
+                dp.get(i + 1, 0)
 
-    return dfs(0)
+            )
+        return dp[0]
